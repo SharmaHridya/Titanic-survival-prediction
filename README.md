@@ -25,15 +25,15 @@ Built as a first project after **Course 1 of the Machine Learning Specialization
 > ✍️ *Fill this in after running the notebook.*
 
 | Model | Features | λ | Train acc | Validation acc | Kaggle score |
-|---|---|---|---|---|---|
-| Baseline: "everyone died" | — | — | 0.616 | — | — |
-| Baseline: "women survive, men die" | sex | — | 0.787 | — | ~0.766 |
-| Logistic regression (from scratch) | 14 | 0 | | | |
-| + interaction/polynomial features | 19 | 0 | | | |
-| + regularization (best λ) | 19 | | | | |
-| scikit-learn `LogisticRegression` | 19 | same | | | — |
+|---|---:|---:|---:|---:|---:|
+| Baseline: “everyone died” | — | — | 0.616 | — | — |
+| Baseline: “women survive, men die” | sex | — | 0.787 | — | ~0.766 |
+| Logistic regression (from scratch) | 14 | 0 | — | — | — |
+| + interaction/polynomial features | 19 | 0 | 0.848 | 0.832 | — |
+| + regularization (λ = 0.1, threshold = 0.6) | 19 | 0.1 | 0.848 | **0.849** | — |
+| scikit-learn `LogisticRegression` | 19 | same | 0.846 | 0.827 | — |
 
-**Most important features** (from the learned weights): *fill in, e.g. Sex (+), Pclass_3 (−), Title_Master (+)…*
+**Most important features** Sex (+0.938), FamilySize (−0.817), Title_Mrs (+0.592), Title_Master (+0.570), HasCabin (+0.455), LogFare (+0.448), Age (−0.442), and Pclass_3 (−0.427).
 
 ---
 
@@ -340,26 +340,7 @@ Try values that each go up about 3×: `0.001 → 0.003 → 0.01 → 0.03 → 0.1
 ```
 Pick the **λ with the best validation accuracy**.
 
----
 
-## Key takeaways
-
-- **Feature engineering mattered more than the algorithm.** Turning `Name` into a title and `SibSp + Parch` into family size gave the model information it couldn't find on its own.
-- **Validation data is essential.** Without it, the overfit model looks better than it really is.
-- **Scaling with training statistics only** avoids data leakage.
-- **Regularization** lets you keep the extra features without overfitting.
-- My NumPy implementation matched scikit-learn's `LogisticRegression` (which uses `C = 1/λ`), confirming the math is right.
-
----
-
-## Next steps
-
-- [ ] Try other features: deck letter from `Cabin`, ticket-group size, age bands
-- [ ] Use k-fold cross-validation instead of a single split (Course 2)
-- [ ] Compare with decision trees and random forests (Course 2)
-- [ ] Build a "Would I have survived?" Streamlit app
-
----
 
 ## Acknowledgements
 
